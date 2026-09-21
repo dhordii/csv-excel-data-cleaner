@@ -5,6 +5,10 @@ import process from "node:process";
 
 const root = path.resolve(import.meta.dirname, "..");
 
+function hashText(value) {
+  return createHash("sha256").update(value.replace(/\r\n/g, "\n")).digest("hex").toUpperCase();
+}
+
 async function filesUnder(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   const nested = await Promise.all(entries.map((entry) => {
@@ -60,12 +64,12 @@ if (!worker.includes("scope.onmessage")) failures.push("The generated worker bun
 if (!vendor.startsWith("/*! xlsx.js")) failures.push("The local Excel library is missing its upstream license header.");
 if (!vendor.includes('version="0.20.3"') && !vendor.includes('version:"0.20.3"')) failures.push("The local Excel library is not SheetJS 0.20.3.");
 if ((await stat(path.join(root, "vendor/xlsx.full.min.js"))).size < 500_000) failures.push("The local Excel library looks incomplete.");
-const vendorHash = createHash("sha256").update(vendor).digest("hex").toUpperCase();
-if (vendorHash !== "B315047C382F0F4033305AD72F2204747DAEF391784EE6138289EFC0831B63D0") {
+const vendorHash = hashText(vendor);
+if (vendorHash !== "CC015130AA8521E7F088F88898EBA949CCDCBFB38DF0BD129B44B7273C3A6F41") {
   failures.push("The local Excel library checksum does not match the reviewed copy.");
 }
 if (!/^\/\*!\s+JSZip v3\.10\.1/m.test(jszip)) failures.push("The local ZIP library is missing or has an unexpected version.");
-const jszipHash = createHash("sha256").update(jszip).digest("hex").toUpperCase();
+const jszipHash = hashText(jszip);
 if (jszipHash !== "ACC7E41455A80765B5FD9C7EE1B8078A6D160BBBCA455AEAE854DE65C947D59E") {
   failures.push("The local ZIP library checksum does not match the reviewed copy.");
 }
