@@ -34,7 +34,7 @@ Files are processed locally in the browser. The app does not send spreadsheet co
 
 ## Use it
 
-Open the [public GitHub Pages demo](https://uhavenicemom.github.io/csv-excel-data-cleaner/). Clients do not need to install or compile anything.
+Open the [public GitHub Pages demo](https://dhordii.github.io/csv-excel-data-cleaner/). Clients do not need to install or compile anything.
 
 For a portable backup, download the repository and open `index.html` directly. Direct-open mode supports files up to 10 MB each; the hosted version supports files up to 50 MB each and keeps heavy parsing away from the interface thread.
 
