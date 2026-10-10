@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="A local, browser-based CSV and Excel data cleaning demo." />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' file:; style-src 'self' file:; style-src-elem 'self' file:; style-src-attr 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <title>Data Cleaner — local CSV & Excel cleanup</title>
     <script src="theme-boot.js"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=4" />
     <script defer src="app.js?v=7"></script>
   </head>
   <body>
@@ -146,20 +145,24 @@
 
         <p class="sr-only" id="tableKeyboardHelp">Focus a table and use the arrow, Page Up, or Page Down keys to browse hidden rows and columns.</p>
 
-        <section class="r-before-heading table-heading before-heading" aria-labelledby="beforeTitle">
-          <div><h2 id="beforeTitle">Before</h2><span>Original data</span></div>
-          <p id="beforeCount">0 rows</p>
-        </section>
-        <section class="r-before-table table-region before-region" aria-label="Original data">
-          <div class="table-scroll" role="region" tabindex="0" aria-labelledby="beforeTitle" aria-describedby="tableKeyboardHelp"><table id="beforeTable"></table></div>
+        <section class="table-preview before-preview" aria-labelledby="beforeTitle">
+          <header class="r-before-heading table-heading">
+            <div><h2 id="beforeTitle">Before</h2><span>Original data</span></div>
+            <p id="beforeCount">0 rows</p>
+          </header>
+          <div class="r-before-table table-region before-region" aria-label="Original data">
+            <div class="table-scroll" role="region" tabindex="0" aria-labelledby="beforeTitle" aria-describedby="tableKeyboardHelp"><table id="beforeTable"></table></div>
+          </div>
         </section>
 
-        <section class="r-after-heading table-heading after-heading" aria-labelledby="afterTitle">
-          <div><h2 id="afterTitle">Cleaned data</h2><span>Click a value to edit</span></div>
-          <p id="afterCount">0 rows</p>
-        </section>
-        <section class="r-after-table table-region after-region" aria-label="Cleaned data">
-          <div class="table-scroll" role="region" tabindex="0" aria-labelledby="afterTitle" aria-describedby="tableKeyboardHelp"><table id="afterTable"></table></div>
+        <section class="table-preview after-preview" aria-labelledby="afterTitle">
+          <header class="r-after-heading table-heading">
+            <div><h2 id="afterTitle">Cleaned data</h2><span>Click a value to edit</span></div>
+            <p id="afterCount">0 rows</p>
+          </header>
+          <div class="r-after-table table-region after-region" aria-label="Cleaned data">
+            <div class="table-scroll" role="region" tabindex="0" aria-labelledby="afterTitle" aria-describedby="tableKeyboardHelp"><table id="afterTable"></table></div>
+          </div>
         </section>
 
         <footer class="results-panel">
