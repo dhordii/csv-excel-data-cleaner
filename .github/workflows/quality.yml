@@ -41,4 +41,3 @@ jobs:
             xlsx-worker.js
           if-no-files-found: error
           retention-days: 3
-

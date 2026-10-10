@@ -99,12 +99,12 @@ button:focus-visible, select:focus-visible, input:focus-visible, [contenteditabl
 .app-shell { min-height: 100vh; min-height: 100dvh; padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); }
 
 .comp-frame {
-  width: min(1440px, 100%);
+  width: 100%;
   min-width: 0;
   margin: 0 auto;
   padding: clamp(18px, 2.4vw, 34px);
   display: grid;
-  grid-template-columns: minmax(280px, .84fr) minmax(0, 1.16fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-areas:
     "header header"
     "file controls"
@@ -112,8 +112,7 @@ button:focus-visible, select:focus-visible, input:focus-visible, [contenteditabl
     "batch batch"
     "rules rules"
     "insights insights"
-    "before-heading after-heading"
-    "before-table after-table"
+    "before-preview after-preview"
     "results results";
   gap: clamp(16px, 1.8vw, 26px);
   background: var(--paper);
@@ -251,10 +250,9 @@ select:disabled { color: var(--muted); background-color: var(--surface-muted); c
 .insight-action { min-height: 28px; padding: 3px 7px; color: var(--blue-dark); font: inherit; font-size: 12px; font-weight: 700; background: var(--surface); border: 1px solid var(--blue-border); border-radius: 5px; }
 .insight-action:hover { background: var(--blue-soft); }
 
-.before-heading { grid-area: before-heading; }
-.after-heading { grid-area: after-heading; }
-.before-region { grid-area: before-table; }
-.after-region { grid-area: after-table; }
+.before-preview { grid-area: before-preview; }
+.after-preview { grid-area: after-preview; }
+.table-preview { min-width: 0; display: flex; flex-direction: column; }
 .table-heading { min-width: 0; min-height: 52px; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-bottom: 0; border-radius: var(--radius) var(--radius) 0 0; }
 .table-heading > div { display: flex; gap: 9px; align-items: center; min-width: 0; }
 .table-heading h1, .table-heading h2 { margin: 0; font-size: 17px; letter-spacing: -.03em; }
@@ -312,14 +310,14 @@ td .issue { display: inline-block; margin-left: 5px; color: var(--amber); font-s
 @keyframes processing-spin { to { transform: rotate(360deg); } }
 
 @media (min-width: 1281px) and (max-width: 1500px) {
-  .comp-frame { grid-template-columns: minmax(300px, .75fr) minmax(0, 1.25fr); }
+  .comp-frame { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .topbar { column-gap: clamp(16px, 1.6vw, 24px); }
   .controls-row { grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; }
   .rules-panel { grid-template-columns: 180px minmax(0, 1fr); }
 }
 
 @media (max-width: 1280px) {
-  .comp-frame { grid-template-columns: minmax(0, 1fr); grid-template-areas: "header" "file" "controls" "presets" "batch" "rules" "insights" "before-heading" "before-table" "after-heading" "after-table" "results"; }
+  .comp-frame { grid-template-columns: minmax(0, 1fr); grid-template-areas: "header" "file" "controls" "presets" "batch" "rules" "insights" "before-preview" "after-preview" "results"; }
   .topbar { grid-template-columns: auto 1fr auto; grid-template-areas: "brand privacy theme" "tagline processing processing"; }
   .privacy-copy { justify-self: start; }
   .controls-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
