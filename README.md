@@ -44,10 +44,20 @@ The editable source is TypeScript in `src/`. Install Node.js 24 or newer and pnp
 
 ```text
 pnpm install
+pnpm dev
+```
+
+The development server rebuilds the browser bundles as source files change and serves the app at `http://127.0.0.1:4173/`. Stop it with `Ctrl+C`.
+
+Before committing, run the complete local verification:
+
+```text
 pnpm check
 ```
 
 `pnpm check` runs the strict TypeScript check, verifies both browser bundles, runs the automated behavior tests, rebuilds `app.js` and `xlsx-worker.js`, and audits the static release files. Those generated files are committed so end users never need the TypeScript toolchain.
+
+`pnpm build:pages` assembles the already verified runtime files into an ignored `dist/` directory. The Pages workflow installs the frozen lockfile, runs `pnpm check`, builds that deterministic artifact, and deploys only `dist/`; a failed check cannot publish the site.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for the module boundaries, processing flow, limits, and release checklist.
 
