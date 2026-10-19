@@ -27,7 +27,7 @@ jobs:
           install: false
 
       - name: Install exact development dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Run project checks
         run: pnpm check

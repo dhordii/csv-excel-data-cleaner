@@ -41,6 +41,11 @@ if (buttonsWithoutType.length) failures.push(`${buttonsWithoutType.length} butto
 if (/<script[^>]+src="https?:/i.test(html)) failures.push("A runtime script still depends on an external CDN.");
 if (/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/i.test(html)) failures.push("Inline executable script bypasses the static content policy.");
 if (!/Content-Security-Policy/i.test(html) || !/connect-src 'none'/.test(html)) failures.push("The static content security policy is missing or incomplete.");
+if (!/<link rel="canonical" href="https:\/\/dhordii\.github\.io\/csv-excel-data-cleaner\/"/.test(html)) failures.push("The canonical public URL is missing or incorrect.");
+if (!/<link rel="icon" href="favicon\.svg" type="image\/svg\+xml"/.test(html)) failures.push("The local favicon link is missing.");
+for (const property of ["og:type", "og:title", "og:description", "og:url"]) {
+  if (!new RegExp(`<meta property="${property}" content="[^"]+"`).test(html)) failures.push(`${property} metadata is missing.`);
+}
 if (/script-src[^;]*'unsafe-inline'/.test(html)) failures.push("Inline JavaScript is allowed by the content security policy.");
 if (!/style-src-elem 'self' file:/.test(html) || !/style-src-attr 'unsafe-inline'/.test(html)) failures.push("The content policy does not separate trusted stylesheets from virtual-table size attributes.");
 if (/innerHTML|outerHTML|insertAdjacentHTML/.test(source)) failures.push("Unsafe HTML injection API found in the application source.");
