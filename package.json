@@ -8,8 +8,10 @@
     "node": ">=24.0.0"
   },
   "scripts": {
+    "dev": "esbuild app=src/main.ts xlsx-worker=src/xlsx-worker.ts --bundle --format=iife --platform=browser --target=es2022 --legal-comments=none --outdir=. --servedir=. --serve=127.0.0.1:4173",
     "build": "node scripts/build.mjs",
     "build:check": "node scripts/build.mjs --check",
+    "build:pages": "node scripts/package-pages.mjs",
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test --test-isolation=none tests/core.test.ts tests/file-processor.test.mjs tests/xlsx.test.mjs tests/archive.test.mjs",
     "audit": "node scripts/audit.mjs",

@@ -3,5 +3,6 @@
 .skill-backups/
 impeccable-skill-*/
 node_modules/
+dist/
 .pnpm-store/
 *.tsbuildinfo
